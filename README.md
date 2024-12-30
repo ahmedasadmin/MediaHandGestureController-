@@ -27,7 +27,7 @@ This project implements a hand gesture control system using OpenCV, MediaPipe, a
 Install the required libraries using the following command:
 
 ```bash
-pip install opencv-python mediapipe pyautogui numpy pyalsaaudio
+pip -r requirements.txt
 ```
 
 ## How It Works
