@@ -47,7 +47,7 @@ pip -r requirements.txt
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/hand-gesture-control.git
+   git clone https://github.com/ahmedasadmin/MediaHandGestureController-.git
    cd hand-gesture-control
    ```
 
