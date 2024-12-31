@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Hand Gesture Controller</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Home";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> Hand Gesture Controller
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href=".">Home</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#features">Features</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-it-works">How It Works</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-hand-tracking">1. Hand Tracking</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-gesture-recognition">2. Gesture Recognition</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-volume-control">3. Volume Control</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-action-mapping">4. Action Mapping</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#code-walkthrough">Code Walkthrough</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#class-handgesturecontroller">Class: HandGestureController</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#methods">Methods:</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-run">How to Run</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#example-output">Example Output</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#customization">Customization</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#notes">Notes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#future-enhancements">Future Enhancements</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#acknowledgements">Acknowledgements</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="hand_gesture_controller/">HandGestureController</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">Hand Gesture Controller</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Home</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="hand-gesture-controller-with-opencv-and-mediapipe">Hand Gesture Controller with OpenCV and MediaPipe</h1>
+<p>This Python script uses OpenCV, MediaPipe, and PyAutoGUI to enable hand gesture recognition. By tracking hand landmarks, the program allows users to perform various actions, such as controlling the system volume or simulating keypresses based on the detected hand gestures. Below is a detailed explanation of the script and its functionality.</p>
+<hr />
+<h2 id="features">Features</h2>
+<ol>
+<li>
+<p><strong>Gesture Recognition</strong>:
+    Detects the number of extended fingers for both hands.
+    Performs actions like navigating slides or controlling media playback based on finger gestures.</p>
+</li>
+<li>
+<p><strong>Volume Control</strong>:
+    Adjusts system volume using right-hand gestures based on palm size and relative landmark positions.</p>
+</li>
+<li>
+<p><strong>Real-Time Processing</strong>:
+    Processes video frames in real-time using OpenCV and MediaPipe.</p>
+</li>
+<li>
+<p><strong>Debounce Mechanism</strong>:
+    Prevents repetitive gesture recognition by adding a time-based debounce mechanism.</p>
+</li>
+</ol>
+<hr />
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li><strong>Python Libraries</strong>:</li>
+<li>OpenCV (<code>cv2</code>)</li>
+<li>MediaPipe</li>
+<li>PyAutoGUI</li>
+<li>ALSA Audio (<code>alsaaudio</code>)</li>
+<li>NumPy</li>
+</ul>
+<p>Install the dependencies using:</p>
+<pre><code class="language-bash">pip install opencv-python mediapipe pyautogui numpy pyalsaaudio
+</code></pre>
+<hr />
+<h2 id="how-it-works">How It Works</h2>
+<h3 id="1-hand-tracking">1. <strong>Hand Tracking</strong></h3>
+<p>The script uses MediaPipe's <code>Hands</code> solution to detect hand landmarks. It identifies key points on the hand, such as fingertips and the wrist, to track movements and gestures.</p>
+<h3 id="2-gesture-recognition">2. <strong>Gesture Recognition</strong></h3>
+<ul>
+<li>The number of extended fingers is calculated by comparing the relative positions of the fingertip and its base joint.</li>
+<li>Thumb extension is determined based on horizontal distance.</li>
+</ul>
+<h3 id="3-volume-control">3. <strong>Volume Control</strong></h3>
+<ul>
+<li>The distance between the thumb and index finger is measured.</li>
+<li>This distance is mapped to a volume percentage and adjusts the system volume using the ALSA Audio mixer.</li>
+</ul>
+<h3 id="4-action-mapping">4. <strong>Action Mapping</strong></h3>
+<p>The following actions are performed based on the number of extended fingers:</p>
+<table>
+<thead>
+<tr>
+<th>Extended Fingers</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Press <code>Right</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Press <code>Left</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Press <code>Up</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Press <code>Down</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Press <code>Space</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="code-walkthrough">Code Walkthrough</h2>
+<h3 id="class-handgesturecontroller">Class: <code>HandGestureController</code></h3>
+<p>The main class encapsulates all the functionality for gesture recognition and control.</p>
+<h4 id="methods">Methods:</h4>
+<ol>
+<li>
+<p><strong><code>__init__()</code></strong><br />
+   Initializes MediaPipe Hands and ALSA Audio mixer.</p>
+</li>
+<li>
+<p><strong><code>calculate_distance(pt1, pt2)</code></strong><br />
+   Computes Euclidean distance between two points.</p>
+</li>
+<li>
+<p><strong><code>get_extended_count_fingers(hand_landmarks)</code></strong><br />
+   Calculates the number of extended fingers based on hand landmarks.</p>
+</li>
+<li>
+<p><strong><code>process_frame(frame)</code></strong><br />
+   Processes a video frame to detect hand gestures.</p>
+</li>
+<li>
+<p><strong><code>handle_left_hand(frame, hand_landmarks, idx)</code></strong><br />
+   Handles gestures for the left hand.<br />
+   Maps gestures to keypress actions.</p>
+</li>
+<li>
+<p><strong><code>handle_right_hand(frame, hand_landmarks)</code></strong><br />
+   Handles gestures for the right hand.<br />
+   Adjusts system volume based on hand movements.</p>
+</li>
+<li>
+<p><strong><code>release_resources()</code></strong><br />
+   Releases MediaPipe resources.</p>
+</li>
+</ol>
+<hr />
+<h2 id="how-to-run">How to Run</h2>
+<ol>
+<li>Connect a webcam to your computer.</li>
+<li>Run the script:
+   <code>bash
+   python hand_gesture_control.py</code></li>
+<li>Use gestures to perform actions:</li>
+<li>Extend one finger to simulate a <code>Right</code> key press.</li>
+<li>Extend two fingers to simulate a <code>Left</code> key press.</li>
+<li>
+<p>Adjust volume by changing the distance between your thumb and index finger (right hand).</p>
+</li>
+<li>
+<p>Press <code>q</code> to quit the application.</p>
+</li>
+</ol>
+<hr />
+<h2 id="example-output">Example Output</h2>
+<p>When the script runs, a window will display the webcam feed with the following annotations:</p>
+<ul>
+<li>Hand landmarks connected by lines.</li>
+<li>Text indicating detected gestures and volume levels.</li>
+</ul>
+<hr />
+<h2 id="customization">Customization</h2>
+<ul>
+<li>
+<p><strong>Gesture Mapping</strong>:
+  Modify the <code>perform_gesture_action()</code> method to change actions for specific gestures.</p>
+</li>
+<li>
+<p><strong>Volume Control</strong>:
+  Adjust the volume range in the <code>handle_right_hand()</code> method by modifying the <code>np.interp</code> mapping.</p>
+</li>
+</ul>
+<hr />
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Ensure the environment is well-lit for accurate hand tracking.</li>
+<li>The script is tested on Ubuntu with ALSA Audio but can be adapted for other platforms.</li>
+</ul>
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+<ol>
+<li><strong>Webcam Not Detected</strong>:</li>
+<li>Ensure the webcam is properly connected.</li>
+<li>
+<p>Check if another application is using the webcam.</p>
+</li>
+<li>
+<p><strong>Low Gesture Detection Accuracy</strong>:</p>
+</li>
+<li>Improve lighting conditions.</li>
+<li>
+<p>Ensure your hand is fully visible in the frame.</p>
+</li>
+<li>
+<p><strong>Volume Control Not Working</strong>:</p>
+</li>
+<li>Verify ALSA Audio is properly installed and configured.</li>
+</ol>
+<hr />
+<h2 id="future-enhancements">Future Enhancements</h2>
+<ul>
+<li>Add support for more complex gestures.</li>
+<li>Implement a calibration mode for dynamic gesture thresholds.</li>
+<li>Extend compatibility to non-ALSA audio systems.</li>
+</ul>
+<hr />
+<h2 id="acknowledgements">Acknowledgements</h2>
+<ul>
+<li><a href="https://google.github.io/mediapipe/">MediaPipe</a> for hand tracking.</li>
+<li><a href="https://opencv.org/">OpenCV</a> for video processing.</li>
+<li><a href="https://pyautogui.readthedocs.io/en/latest/">PyAutoGUI</a> for simulating keyboard input.</li>
+<li><a href="https://www.alsa-project.org/">ALSA Audio</a> for volume control.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="hand_gesture_controller/" class="btn btn-neutral float-right" title="HandGestureController">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="hand_gesture_controller/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.5.3
+Build Date UTC : 2024-12-31 15:12:13.894545+00:00
+-->

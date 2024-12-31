@@ -1,0 +1,4 @@
+/* Adjust font size for the hand gesture controller directive */
+div.hand_gesture_controller {
+    font-size: 12px;
+}
