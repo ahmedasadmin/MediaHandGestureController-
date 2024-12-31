@@ -30,7 +30,7 @@ class HandGestureController:
             pt2: A point object with attributes 'x' and 'y' representing the second point.
 
         Returns:
-            float: The Euclidean distance between the two points.
+            distance(float): The Euclidean distance between the two points.
         """
         dx = pt1.x - pt2.x
         dy = pt1.y - pt2.y

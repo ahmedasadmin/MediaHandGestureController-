@@ -1,0 +1,20 @@
+site_name: Hand Gesture Controller
+
+
+nav:
+  - Home: index.md
+  - HandGestureController: hand_gesture_controller.md
+
+extra_css:
+  - css/styles.css
+
+theme:  readthedocs
+
+plugins:
+  - search:
+  - mkdocstrings:
+      handlers:
+        python:
+          setup_commands:
+            - import sys
+            - sys.path.append('/home/ahmed/faculty/computerVision/MediaHandGestureController-/src')
