@@ -53,7 +53,7 @@ pip -r requirements.txt
 
 2. Run the script:
    ```bash
-   python hand_gesture_control.py
+   python main.py
    ```
 
 3. Perform gestures in front of the webcam:
